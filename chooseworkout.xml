@@ -1,0 +1,39 @@
+ public class Workout {
+
+   private string workout;
+   private int calories;
+
+
+    public workout ( string workout, int calories)
+{
+        this.workout = workout;
+        this.calories = calories;
+ }
+
+
+  private void setCalories(string calories){
+  
+     this.calories = calories;
+}
+
+ private void  setWorkout(string workout){
+  
+     this.workout = workout;
+}
+
+
+
+  private  string getCalories(){
+  
+     return this.calories;
+}
+
+ private void  getWorkout(){
+  
+     return this.workout;
+}
+
+}
+
+
+}

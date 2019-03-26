@@ -1,0 +1,113 @@
+package com.example.CALORIES;
+
+import android,support.v7.app.AppCompactActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+imort android.widget.EditText;
+import android.widget.Textview;
+
+    public class  WorkoutArrayAdapter extends ArrayAdapter {
+    private final Context context;
+    private ArrayList <WorkoutDataModel> workouts
+
+        public WorkoutArrayAdapter(ArrayList<Workout> workout,Context context) {
+            this.context = context;
+            this.workouts = workout;
+            }
+
+            public int getCount() {
+            return workouts.size();
+            }
+
+            @Override
+            public Object getItem(int i) {
+            return workouts.get(i);
+            }
+
+            @Override
+            protected void oncreate(bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setcontentView(R.layout.activity_main);
+            public long getItemId(int i) {
+            return i;
+            }
+
+            private static class ViewHolder{
+            TextView workout,calories;
+            EditText workout_done;
+
+            }
+
+            ViewHolder viewHolder = null;
+
+            public View getView(int position, View view, ViewGroup viewGroup) {
+
+            View vi=view;
+            final int pos = position;
+            if(vi == null){
+
+
+            viewHolder = new ViewHolder();
+
+            vi = layoutInflater.inflate(R.layout.workout_item_row,null);
+            viewHolder.workout = (Textview) vi.findViewById(R.id.workout);
+            viewHolder.calories = (TextView) vi.findViewById(R.id.calories);
+
+            viewHolder.workout_done = (EditText) vi.findViewById(R.workout_done);
+
+
+            vi.setTag(viewHolder);
+            }else {
+
+
+            viewHolder= (ViewHolder) vi.getTag();
+            }
+
+
+            viewHolder.workout.setText(workouts.get(pos).getWorkout());
+            viewHolder.calories.setText(workouts.get(pos).getCalories());
+
+            return vi;
+            }
+
+
+            File:: WorkoutActivity.java
+
+            public class WorkoutActivity extends AppCompatActivity {
+
+            ListView list_view;
+            WorkoutArrayAdapter customListAdapter;
+            ArrayList<workout> workoutModels;
+
+                @Override
+                protected void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+                setContentView(R.layout.activity_list);
+                PopulateData();
+                initView();
+                }
+
+                public void initView(){
+                list_view = (ListView) findViewById(R.id.workout_list);
+                customListAdapter = new CustomListAdapter(WorkoutActivity.this, workouts);
+                list_view.setAdapter(customListAdapter);
+                }
+
+                public void PopulateData(){
+
+
+                workoutModels = new ArrayList[]();
+
+                    workoutmodels.Add(new Workout("Arm pressing","13"))
+                    workoutmodels.Add(new Workout("Jogging","20"))
+                    workoutmodels.Add(new Workout("Running","10"))
+
+
+                    customListAdapter = new   WorkoutArrayAdapter(workoutModels,getApplicationContext());
+                    list_view.setAdapter(adapter);
+
+
+
+                    }
+                    }
